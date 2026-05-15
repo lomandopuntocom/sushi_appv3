@@ -1,23 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login/Login';
-import Register from './pages/Register/Register';
+// frontend/src/App.jsx
+import { CartProvider } from './context/CartContext';
+import AppRoutes from './routes/AppRoutes';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Ruta temporal de inicio para comprobar que el login funcionó */}
-        <Route path="/" element={
-          <div style={{textAlign: 'center', marginTop: '50px'}}>
-            <h1>Bienvenido a Sushi App</h1>
-            <p>Si ves esto y tienes un token en el LocalStorage, ¡tu login fue un éxito!</p>
-          </div>
-        } />
-        
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Register />} />
-      </Routes>
-    </Router>
+    // App.jsx ahora es el punto de entrada maestro para los proveedores de estado
+    <CartProvider>
+      <AppRoutes />
+    </CartProvider>
   );
 }
 

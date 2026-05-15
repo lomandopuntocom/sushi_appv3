@@ -16,6 +16,12 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+// Conectar la ruta del menú
+app.use('/api/menu', require('./routes/menuRoutes'));
+
+//Ruta Pedidos
+app.use('/api/pedidos', require('./routes/pedidoRoutes'));
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
