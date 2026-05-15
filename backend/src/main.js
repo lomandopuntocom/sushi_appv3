@@ -1,16 +1,19 @@
 const express = require('express');
 const cors = require('cors');
+// Importar rutas
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
 app.use(cors());
-app.use(express.json()); // Permite recibir JSON en el body de las peticiones
+app.use(express.json()); 
 
-// Endpoint de prueba (El primer paso para tu rúbrica)
+// Conectar la ruta de autenticación
+app.use('/api/auth', authRoutes);
+
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: '¡El backend de Sushi App está vivo!' });
+  res.json({ status: 'ok' });
 });
 
 app.listen(PORT, () => {

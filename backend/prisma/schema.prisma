@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enum para los roles
+enum rol_usuario {
+  CLIENTE
+  ADMINISTRADOR
+}
+
+model usuario {
+  id            Int             @id @default(autoincrement())
+  nombre        String          @db.VarChar(255)
+  telefono      String?         @db.VarChar(20)
+  email         String          @unique @db.VarChar(255)
+  contrasena    String          @db.VarChar(255)
+  direccion     String?         @db.VarChar(255)
+  rol           rol_usuario     @default(CLIENTE)
+  
+  // Relaciones inversas
+  carrito       carrito[]
+  publicaciones publicaciones[]
+  guardado      guardado[]
+  reservacion   reservacion[]
+}
+
+model categoria {
+  id       Int        @id @default(autoincrement())
+  nombre   String     @db.VarChar(255)
+  platillo platillo[]
+}
+
+model platillo {
+  id            Int             @id @default(autoincrement())
+  nombre        String          @db.VarChar(255)
+  descripcion   String?
+  precio        Decimal         @db.Decimal(10, 2)
+  image         String?         @db.VarChar(100)
+  
+  idcategoria   Int
+  categoria     categoria       @relation(fields: [idcategoria], references: [id], onDelete: Restrict, onUpdate: NoAction)
+  plato_carrito plato_carrito[]
+}
+
+model carrito {
+  id            Int             @id @default(autoincrement())
+  fechacreacion DateTime        @default(now()) @db.Timestamptz(6)
+  estado        String          @default("PENDIENTE") @db.VarChar(50)
+  
+  idusuario     Int
+  usuario       usuario         @relation(fields: [idusuario], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  plato_carrito plato_carrito[]
+}
+
+model plato_carrito {
+  id        Int       @id @default(autoincrement())
+  cantidad  Int       @default(1)
+  
+  idcarrito Int
+  carrito   carrito   @relation(fields: [idcarrito], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  
+  idplato   Int
+  platillo  platillo  @relation(fields: [idplato], references: [id], onDelete: Restrict, onUpdate: NoAction)
+
+  @@unique([idcarrito, idplato])
+}
+
+model publicaciones {
+  id        Int        @id @default(autoincrement())
+  nombre    String     @db.VarChar(255)
+  contenido String
+  autor     String?    @db.VarChar(255)
+  fecha     DateTime   @default(now()) @db.Timestamptz(6)
+  
+  idusuario Int
+  usuario   usuario    @relation(fields: [idusuario], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  guardado  guardado[]
+}
+
+model guardado {
+  id            Int           @id @default(autoincrement())
+  
+  idpublicacion Int
+  publicaciones publicaciones @relation(fields: [idpublicacion], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  
+  idusuario     Int
+  usuario       usuario       @relation(fields: [idusuario], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@unique([idpublicacion, idusuario])
+}
+
+model reservacion {
+  id        Int      @id @default(autoincrement())
+  nombre    String   @db.VarChar(255)
+  telefono  String?  @db.VarChar(20)
+  email     String   @db.VarChar(255)
+  invitados Int
+  fecha     DateTime @db.Date
+  tiempo    DateTime @db.Time(6)
+  estado    String   @default("PENDIENTE") @db.VarChar(50)
+  
+  idusuario Int
+  usuario   usuario  @relation(fields: [idusuario], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
