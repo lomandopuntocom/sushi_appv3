@@ -8,7 +8,7 @@
     "start": "node src/main.js",
     "docker:start": "prisma db push && prisma db seed && node src/main.js",
     "check": "node --check src/main.js && node --check src/controllers/authController.js && node --check src/controllers/blogController.js && node --check src/controllers/menuController.js && node --check src/controllers/pedidoController.js && node --check src/middlewares/authMiddleware.js && node --check src/routes/authRoutes.js && node --check src/routes/blogRoutes.js && node --check src/routes/menuRoutes.js && node --check src/routes/pedidoRoutes.js && node --check prisma/seed.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -27,7 +27,9 @@
     "postgres": "^3.4.9"
   },
   "devDependencies": {
+    "jest": "^30.4.2",
     "nodemon": "^3.1.14",
-    "prisma": "^6.19.3"
+    "prisma": "^6.19.3",
+    "supertest": "^7.2.2"
   }
 }
