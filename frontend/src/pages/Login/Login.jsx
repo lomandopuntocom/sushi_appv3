@@ -1,12 +1,15 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import './Login.css'; // Tu CSS original
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import './Login.css';
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: '', contrasena: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,12 +33,8 @@ export default function Login() {
         throw new Error(data.mensaje || 'Credenciales inválidas');
       }
 
-      // Guardamos el token y los datos del usuario en el navegador
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('usuario', JSON.stringify(data.usuario));
-
-      // Lo enviamos a la página principal o menú
-      navigate('/');
+      login(data);
+      navigate(location.state?.from?.pathname || '/', { replace: true });
     } catch (err) {
       setError(err.message);
     } finally {

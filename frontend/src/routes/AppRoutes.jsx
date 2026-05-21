@@ -1,30 +1,51 @@
 // frontend/src/routes/AppRoutes.jsx
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
-import Login from '../pages/Login/Login';
-import Register from '../pages/Register/Register';
-import Menu from '../pages/Menu/Menu';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import AdminBlog from '../pages/AdminBlog/AdminBlog';
+import AdminCatalog from '../pages/AdminCatalog/AdminCatalog';
+import BlogDetail from '../pages/Blog/BlogDetail';
+import BlogList from '../pages/Blog/BlogList';
 import Cart from '../pages/Cart/Cart';
+import Login from '../pages/Login/Login';
+import Menu from '../pages/Menu/Menu';
 import Profile from '../pages/Profile/Profile';
+import Register from '../pages/Register/Register';
+import { AdminRoute, ProtectedRoute } from './ProtectedRoute';
+
+function AdminHome() {
+  return (
+    <div style={{ padding: '24px' }}>
+      <h2>Panel de Administrador</h2>
+      <p>Desde aqui se administra el catalogo de platillos y los posts del blog.</p>
+      <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <Link to="/admin/catalogo">Administrar catalogo</Link>
+        <Link to="/admin/blog">Administrar blog</Link>
+      </div>
+    </div>
+  );
+}
 
 function NavigationAndRoutes() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    // Verificamos si hay un token cada vez que cambia la ruta
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
-  }, [location]);
+  const { isAuthenticated, isAdmin, logout } = useAuth();
 
   return (
     <>
-      {/* Un Navbar temporal muy básico para que puedas navegar */}
       <nav style={{ padding: '20px', background: '#f8f8f8', display: 'flex', gap: '15px' }}>
-        <Link to="/menu">Menú</Link>
+        <Link to="/menu">Menu</Link>
+        <Link to="/blog">Blog</Link>
         <Link to="/carrito">Carrito</Link>
-        {isLoggedIn ? (
-          <Link to="/perfil">Perfil</Link>
+        {isAuthenticated ? (
+          <>
+            <Link to="/perfil">Perfil</Link>
+            {isAdmin && (
+              <>
+                <Link to="/admin">Admin</Link>
+                <Link to="/admin/catalogo">Catalogo</Link>
+                <Link to="/admin/blog">Posts</Link>
+              </>
+            )}
+            <button type="button" onClick={logout}>Cerrar sesion</button>
+          </>
         ) : (
           <Link to="/login">Login</Link>
         )}
@@ -33,10 +54,21 @@ function NavigationAndRoutes() {
       <Routes>
         <Route path="/" element={<Menu />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/carrito" element={<Cart />} />
-        <Route path="/perfil" element={<Profile />} />
+        <Route path="/blog" element={<BlogList />} />
+        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/carrito" element={<Cart />} />
+          <Route path="/perfil" element={<Profile />} />
+        </Route>
+
+        <Route element={<AdminRoute />}>
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/admin/catalogo" element={<AdminCatalog />} />
+          <Route path="/admin/blog" element={<AdminBlog />} />
+        </Route>
       </Routes>
     </>
   );

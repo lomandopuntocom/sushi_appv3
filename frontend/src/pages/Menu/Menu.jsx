@@ -25,12 +25,12 @@ export default function Menu() {
     fetchMenu();
   }, []);
 
-  if (loading) return <div className="loading">Cargando delicias...</div>;
+  if (loading) return <div className="loading">Cargando Platillos...</div>;
   if (error) return <div className="error">Error: {error}</div>;
 
   return (
     <div className="menu-section">
-      <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Nuestro Menú Real</h2>
+      <h2 style={{ textAlign: 'center', marginTop: '20px' }}>Nuestro Menú</h2>
       
       <div className="menu-grid"> 
         {platos.map((plato) => (

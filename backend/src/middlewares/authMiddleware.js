@@ -23,4 +23,16 @@ const verificarToken = (req, res, next) => {
   }
 };
 
-module.exports = { verificarToken };
+const verificarAdmin = (req, res, next) => {
+  if (!req.usuario) {
+    return res.status(401).json({ mensaje: 'Debes iniciar sesiÃ³n' });
+  }
+
+  if (req.usuario.rol !== 'ADMINISTRADOR') {
+    return res.status(403).json({ mensaje: 'No tienes permisos de administrador' });
+  }
+
+  next();
+};
+
+module.exports = { verificarToken, verificarAdmin };

@@ -22,6 +22,9 @@ app.use('/api/menu', require('./routes/menuRoutes'));
 //Ruta Pedidos
 app.use('/api/pedidos', require('./routes/pedidoRoutes'));
 
+// Ruta Blog
+app.use('/api/blog', require('./routes/blogRoutes'));
+
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
