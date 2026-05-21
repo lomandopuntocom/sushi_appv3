@@ -16,15 +16,15 @@
 
 .admin-blog__header p {
   margin: 0;
-  color: #666;
+  color: var(--text);
 }
 
 .admin-blog__error {
   margin-bottom: 16px;
   padding: 12px;
   border: 1px solid #d94b4b;
-  background: #fff4f4;
-  color: #9b1c1c;
+  background: rgba(217, 75, 75, 0.1);
+  color: #f87171;
 }
 
 .admin-blog__layout {
@@ -37,10 +37,10 @@
 .admin-blog__form,
 .admin-blog__preview,
 .admin-blog__list {
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--border);
   border-radius: 8px;
   padding: 20px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .admin-blog__form {
@@ -58,10 +58,12 @@
 .admin-blog__form textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 10px;
   font: inherit;
+  background: var(--bg);
+  color: var(--text);
 }
 
 .admin-blog__actions {
@@ -74,13 +76,14 @@
   border: 0;
   border-radius: 6px;
   padding: 10px 14px;
-  background: #111;
+  background: var(--accent);
   color: #fff;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .admin-blog button[type='button'] {
-  background: #555;
+  background: #444;
 }
 
 .admin-blog__items {
@@ -120,15 +123,15 @@
 .admin-blog__markdown code {
   border-radius: 4px;
   padding: 2px 5px;
-  background: #f2f2f2;
+  background: var(--code-bg);
 }
 
 .admin-blog__markdown pre {
   overflow-x: auto;
   border-radius: 8px;
   padding: 12px;
-  background: #111;
-  color: #fff;
+  background: #0a0a0f;
+  color: #e5e5e5;
 }
 
 .admin-blog__markdown pre code {
@@ -137,15 +140,15 @@
 }
 
 .admin-blog__markdown blockquote {
-  border-left: 4px solid #111;
+  border-left: 4px solid var(--accent);
   padding-left: 12px;
-  color: #555;
+  color: var(--text);
 }
 
 .admin-blog__item {
   display: grid;
   gap: 12px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
   padding: 12px 0;
 }
 
@@ -156,7 +159,7 @@
 .admin-blog__item span {
   display: block;
   margin-top: 4px;
-  color: #666;
+  color: var(--text);
 }
 
 @media (max-width: 820px) {

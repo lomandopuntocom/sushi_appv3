@@ -30,24 +30,24 @@ function NavigationAndRoutes() {
 
   return (
     <>
-      <nav style={{ padding: '20px', background: '#f8f8f8', display: 'flex', gap: '15px' }}>
-        <Link to="/menu">Menu</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/carrito">Carrito</Link>
+      <nav style={{ padding: '16px 20px', background: '#0f0f13', display: 'flex', gap: '20px', alignItems: 'center', borderBottom: '1px solid var(--border)', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Link to="/menu" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Menu</Link>
+        <Link to="/blog" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Blog</Link>
+        <Link to="/carrito" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Carrito</Link>
         {isAuthenticated ? (
           <>
-            <Link to="/perfil">Perfil</Link>
+            <Link to="/perfil" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Perfil</Link>
             {isAdmin && (
               <>
-                <Link to="/admin">Admin</Link>
-                <Link to="/admin/catalogo">Catalogo</Link>
-                <Link to="/admin/blog">Posts</Link>
+                <Link to="/admin" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Admin</Link>
+                <Link to="/admin/catalogo" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Catalogo</Link>
+                <Link to="/admin/blog" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Posts</Link>
               </>
             )}
-            <button type="button" onClick={logout}>Cerrar sesion</button>
+            <button type="button" onClick={logout} style={{ background: 'transparent', border: '1px solid var(--border)', color: 'var(--text)', padding: '6px 14px', borderRadius: '6px', cursor: 'pointer', fontWeight: 600 }}>Cerrar sesion</button>
           </>
         ) : (
-          <Link to="/login">Login</Link>
+          <Link to="/login" style={{ color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Login</Link>
         )}
       </nav>
 
