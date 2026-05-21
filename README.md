@@ -55,3 +55,16 @@ PORT=3000
 - Un usuario administrador debe tener rol `ADMINISTRADOR` en la tabla `usuario`.
 - El admin puede administrar catalogo de platillos y posts del blog.
 - El cliente puede navegar el menu, usar carrito y leer el blog.
+
+## CI/CD
+
+El workflow de GitHub Actions esta en `.github/workflows/ci.yml` y se ejecuta en `push` a `main`/`master` y en `pull_request`.
+
+Valida:
+
+- lint general del repositorio con Biome
+- generacion de Prisma Client
+- chequeo de sintaxis del backend
+- lint del frontend
+- build de produccion del frontend
+- build de imagenes Docker con `docker compose build`
