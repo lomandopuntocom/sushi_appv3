@@ -1,73 +1,73 @@
 .profile-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-  min-height: calc(100vh - 100px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 40px 20px;
+	min-height: calc(100vh - 100px);
 }
 
 .profile-card {
-  background-color: var(--surface);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  width: 100%;
-  max-width: 500px;
-  text-align: center;
+	background-color: var(--surface);
+	padding: 40px;
+	border-radius: 12px;
+	box-shadow: var(--shadow);
+	width: 100%;
+	max-width: 500px;
+	text-align: center;
 }
 
 .profile-card h2 {
-  margin-top: 0;
-  margin-bottom: 30px;
-  color: var(--text-h);
-  font-size: 2rem;
+	margin-top: 0;
+	margin-bottom: 30px;
+	color: var(--text-h);
+	font-size: 2rem;
 }
 
 .profile-info {
-  text-align: left;
-  margin-bottom: 30px;
-  padding: 20px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
+	text-align: left;
+	margin-bottom: 30px;
+	padding: 20px;
+	border-radius: 8px;
+	border: 1px solid var(--border);
 }
 
 .info-group {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid var(--border);
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid var(--border);
 }
 
 .info-group:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	border-bottom: none;
 }
 
 .info-label {
-  font-weight: bold;
-  color: var(--text);
+	font-weight: bold;
+	color: var(--text);
 }
 
 .info-value {
-  color: var(--text-h);
-  font-weight: 500;
+	color: var(--text-h);
+	font-weight: 500;
 }
 
 .logout-btn {
-  background-color: #e74c3c;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
+	background-color: #e74c3c;
+	color: white;
+	border: none;
+	padding: 12px 24px;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	font-weight: 600;
+	cursor: pointer;
+	width: 100%;
+	transition: background-color 0.3s ease;
 }
 
 .logout-btn:hover {
-  background-color: #c0392b;
+	background-color: #c0392b;
 }

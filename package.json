@@ -1,31 +1,28 @@
 {
-  "name": "sushi_appv3",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "format": "biome format --write .",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "prepare": "husky"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lomandopuntocom/sushi_appv3.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/lomandopuntocom/sushi_appv3/issues"
-  },
-  "homepage": "https://github.com/lomandopuntocom/sushi_appv3#readme",
-  "devDependencies": {
-    "@biomejs/biome": "2.4.15",
-    "husky": "^9.1.7"
-  },
-  "dependencies": {
-    "biome": "^0.3.3"
-  }
+	"name": "sushi_appv3",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"format": "biome format --write .",
+		"lint": "biome check .",
+		"lint:fix": "biome check --write .",
+		"prepare": "husky"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lomandopuntocom/sushi_appv3.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/lomandopuntocom/sushi_appv3/issues"
+	},
+	"homepage": "https://github.com/lomandopuntocom/sushi_appv3#readme",
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.15",
+		"husky": "^9.1.7"
+	}
 }
