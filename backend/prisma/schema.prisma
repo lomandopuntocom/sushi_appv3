@@ -73,6 +73,7 @@ model plato_carrito {
 model publicaciones {
   id        Int        @id @default(autoincrement())
   nombre    String     @db.VarChar(255)
+  descripcion String?
   contenido String
   autor     String?    @db.VarChar(255)
   fecha     DateTime   @default(now()) @db.Timestamptz(6)

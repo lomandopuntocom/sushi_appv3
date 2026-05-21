@@ -7,6 +7,7 @@ import './AdminBlog.css';
 const API_URL = 'http://localhost:3000/api';
 const initialForm = {
   nombre: '',
+  descripcion: '',
   contenido: '',
 };
 
@@ -86,6 +87,7 @@ export default function AdminBlog() {
     setEditingId(post.id);
     setForm({
       nombre: post.nombre,
+      descripcion: post.descripcion || '',
       contenido: post.contenido,
     });
   };
@@ -127,6 +129,16 @@ export default function AdminBlog() {
           <label>
             Titulo
             <input name="nombre" value={form.nombre} onChange={handleChange} required />
+          </label>
+          <label>
+            Descripcion corta
+            <textarea
+              name="descripcion"
+              value={form.descripcion}
+              onChange={handleChange}
+              rows="3"
+              placeholder="Resumen breve para mostrar en la tarjeta del blog"
+            />
           </label>
           <label>
             Contenido Markdown

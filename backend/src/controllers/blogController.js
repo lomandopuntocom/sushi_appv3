@@ -49,7 +49,7 @@ const getPostById = async (req, res) => {
 
 const crearPost = async (req, res) => {
   try {
-    const { nombre, contenido } = req.body;
+    const { nombre, descripcion, contenido } = req.body;
 
     if (!nombre || !contenido) {
       return res.status(400).json({ mensaje: 'Titulo y contenido son obligatorios' });
@@ -63,6 +63,7 @@ const crearPost = async (req, res) => {
     const post = await prisma.publicaciones.create({
       data: {
         nombre,
+        descripcion,
         contenido,
         autor: usuario?.nombre || 'Administrador',
         idusuario: req.usuario.id,
@@ -86,7 +87,7 @@ const crearPost = async (req, res) => {
 
 const actualizarPost = async (req, res) => {
   try {
-    const { nombre, contenido } = req.body;
+    const { nombre, descripcion, contenido } = req.body;
 
     if (!nombre || !contenido) {
       return res.status(400).json({ mensaje: 'Titulo y contenido son obligatorios' });
@@ -94,7 +95,7 @@ const actualizarPost = async (req, res) => {
 
     const post = await prisma.publicaciones.update({
       where: { id: Number(req.params.id) },
-      data: { nombre, contenido },
+      data: { nombre, descripcion, contenido },
       include: {
         usuario: {
           select: {

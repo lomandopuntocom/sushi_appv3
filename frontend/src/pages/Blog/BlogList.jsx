@@ -4,6 +4,18 @@ import './Blog.css';
 
 const API_URL = 'http://localhost:3000/api';
 
+function getPostDescription(post) {
+  if (post.descripcion) {
+    return post.descripcion;
+  }
+
+  return post.contenido
+    .replace(/[#>*_`[\]-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 160);
+}
+
 export default function BlogList() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +60,7 @@ export default function BlogList() {
             <article key={post.id} className="blog-card">
               <div>
                 <h2>{post.nombre}</h2>
-                <p>{post.contenido.slice(0, 160)}{post.contenido.length > 160 ? '...' : ''}</p>
+                <p>{getPostDescription(post)}{getPostDescription(post).length >= 160 ? '...' : ''}</p>
                 <span>
                   {post.autor || post.usuario?.nombre || 'Sushi App'} - {new Date(post.fecha).toLocaleDateString()}
                 </span>
